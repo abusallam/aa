@@ -1,0 +1,159 @@
+/* Home page specific styles */
+.home-page {
+  background-color: var(--light-bg);
+}
+
+.elementor-section {
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.elementor-top-section {
+  background: linear-gradient(135deg, var(--background-color) 0%, var(--light-bg) 100%);
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.elementor-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.elementor-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  align-items: center;
+}
+
+.elementor-column {
+  flex: 1;
+  min-width: 300px;
+}
+
+.elementor-animation {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.elementor-animation:hover {
+  transform: scale(1.02);
+}
+
+.elementor-text-editor {
+  color: var(--text-color);
+  line-height: 1.8;
+  margin: 1.5rem 0;
+  font-size: 1.1rem;
+}
+
+.elementor-button {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2rem;
+}
+
+.elementor-button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--hover-shadow);
+}
+
+.elementor-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+#AboutUs {
+  background-color: var(--light-bg);
+}
+
+#AboutUs .elementor-text-editor {
+  padding: 0 1rem;
+  position: relative;
+}
+
+#AboutUs .elementor-text-editor::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+}
+
+/* Animation for sections */
+.elementor-section {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .elementor-section {
+    padding: 3rem 0;
+  }
+
+  .elementor-row {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .elementor-column {
+    width: 100%;
+  }
+
+  .elementor-text-editor {
+    font-size: 1rem;
+  }
+
+  .elementor-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .home-page {
+    background-color: #1a1a1a;
+  }
+
+  .elementor-top-section {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  }
+
+  #AboutUs {
+    background-color: #2a2a2a;
+  }
+
+  .elementor-text-editor {
+    color: #e0e0e0;
+  }
+}

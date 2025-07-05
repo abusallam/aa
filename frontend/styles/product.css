@@ -1,0 +1,129 @@
+/* Product page specific styles */
+.product-page {
+  background-color: var(--light-bg);
+}
+
+.product-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: var(--background-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.product-image {
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.product-image:hover {
+  transform: scale(1.02);
+}
+
+.product-description {
+  margin: 2rem 0;
+  padding: 2rem;
+  background-color: var(--light-bg);
+  border-radius: 8px;
+}
+
+.product-description h2 {
+  color: var(--secondary-color);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.product-description p {
+  color: var(--text-color);
+  line-height: 1.8;
+}
+
+.related-products {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.related-products h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.related-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.related-product-card {
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.related-product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--hover-shadow);
+}
+
+.related-product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.related-product-card h3 {
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .product-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .product-description {
+    padding: 1rem;
+  }
+
+  .related-products-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .product-page {
+    background-color: #1a1a1a;
+  }
+
+  .product-container {
+    background-color: #2a2a2a;
+  }
+
+  .product-description {
+    background-color: #1a1a1a;
+  }
+
+  .related-product-card {
+    background-color: #2a2a2a;
+    border-color: #3a3a3a;
+  }
+
+  .product-description p,
+  .product-description h2 {
+    color: #e0e0e0;
+  }
+}
