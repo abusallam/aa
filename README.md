@@ -1,8 +1,3 @@
-Certainly! Below is the full content of **`README-AgentSaaS-Pro.md`** — this is the full English documentation for your AI-powered SaaS website project:
-
----
-
-```markdown
 # 🚀 AgentSaaS-Pro: AI-Enhanced SaaS Website
 
 AgentSaaS-Pro is a modern, AI-powered SaaS website built with:
@@ -20,7 +15,6 @@ AgentSaaS-Pro is a modern, AI-powered SaaS website built with:
 ## 📁 Project Structure
 
 ```
-
 project/
 ├── frontend/              # Next.js frontend
 │   ├── pages/             # Homepage, contact, services
@@ -42,8 +36,7 @@ project/
 ├── docker-compose.yml     # Docker deployment
 ├── .env                   # Environment variables
 └── volumes/               # Persistent volumes
-
-````
+```
 
 ---
 
@@ -52,6 +45,7 @@ project/
 - Generate or edit web pages dynamically
 - Modify frontend layouts and backend logic
 - Receive instructions via chatbot or admin UI
+- Leverages OpenAI Function Calling for robust command processing
 - Works with OpenAI or Aider-based models using MCP
 
 ---
@@ -77,7 +71,7 @@ project/
 git clone https://github.com/YOUR_REPO/AgentSaaS-Pro.git
 cd AgentSaaS-Pro
 cp .env.example .env  # Update secrets and DB info
-````
+```
 
 ### 2. Start Docker
 
@@ -163,7 +157,7 @@ Update `device:` to your preferred mount point.
 ## 🧱 Roadmap
 
 * [x] Clone existing site design
-* [x] AI chat widget with FastAPI
+* [x] AI chat widget with FastAPI (now with Function Calling!)
 * [x] Admin panel with JWT
 * [x] Docker Compose with volume mounts
 * [ ] Auto-deploy via Coolify
@@ -177,12 +171,3 @@ Update `device:` to your preferred mount point.
 This project is maintained by a senior AI developer and powered by MCP-compatible agents.
 
 For advanced integrations, contact your Alpha Agent or add more tools via the backend.
-
-```
-
----
-
-Let me know if you want this README bundled with the full ZIP project later or if you'd like me to paste other files like `.env.example` or the `docker-compose.yml` too.
-```
-
-
