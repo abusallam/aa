@@ -1,13 +1,56 @@
 import os
-import google.generativeai as genai # Change from openai import OpenAI
+import google.generativeai as genai
 from sqlalchemy.orm import Session
 from ..models import Page
-from ..api.content import PageCreate, PageUpdate # Import Pydantic models for validation
-from typing import Union, Literal # Add this import
-import json # Add this import
+from ..api.content import PageCreate
+from typing import List
+import json
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY")) # Configure Gemini API
-client = genai.GenerativeModel("gemini-pro") # Initialize Gemini GenerativeModel
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+client = genai.GenerativeModel("gemini-pro")
+
+def list_files_tool(path: str) -> str:
+    """
+    Lists all files and directories in a specified path. 
+    Use this to explore the project structure.
+    """
+    try:
+        if not os.path.exists(path) or not os.path.isdir(path):
+            return f"Error: Path '{path}' is not a valid directory."
+        
+        items = os.listdir(path)
+        if not items:
+            return f"The directory '{path}' is empty."
+        
+        return "\n".join(items)
+    except Exception as e:
+        return f"Error listing files: {e}"
+
+def read_file_tool(path: str) -> str:
+    """
+    Reads the entire content of a file.
+    Use this to understand existing code or content before making changes.
+    """
+    try:
+        if not os.path.exists(path) or not os.path.isfile(path):
+            return f"Error: File '{path}' not found."
+        
+        with open(path, "r") as f:
+            return f.read()
+    except Exception as e:
+        return f"Error reading file: {e}"
+
+def write_file_tool(path: str, content: str) -> str:
+    """
+    Writes or overwrites content to a file.
+    This is useful for creating new files or modifying existing ones.
+    """
+    try:
+        with open(path, "w") as f:
+            f.write(content)
+        return f"File '{path}' written successfully."
+    except Exception as e:
+        return f"Error writing to file: {e}"
 
 def create_page_tool(title: str, slug: str, content: str, db: Session) -> str:
     """Creates a new page in the database."""
@@ -54,6 +97,61 @@ def delete_page_tool(slug: str, db: Session) -> str:
         return f"Error deleting page: {e}"
 
 tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "list_files_tool",
+            "description": "Lists all files and directories in a given path.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "path": {
+                        "type": "string",
+                        "description": "The path of the directory to list."
+                    }
+                },
+                "required": ["path"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "read_file_tool",
+            "description": "Reads the content of a file.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "path": {
+                        "type": "string",
+                        "description": "The path of the file to read."
+                    }
+                },
+                "required": ["path"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "write_file_tool",
+            "description": "Writes content to a file, creating it if it doesn't exist.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "path": {
+                        "type": "string",
+                        "description": "The path of the file to write to."
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "The content to write to the file."
+                    }
+                },
+                "required": ["path", "content"]
+            }
+        }
+    },
     {
         "type": "function",
         "function": {
@@ -140,6 +238,9 @@ def process_command(command_text: str, db: Session) -> str:
         if candidate.function_calls:
             # If function calls are detected, process them
             available_functions = {
+                "list_files_tool": list_files_tool,
+                "read_file_tool": read_file_tool,
+                "write_file_tool": write_file_tool,
                 "create_page_tool": create_page_tool,
                 "update_page_tool": update_page_tool,
                 "delete_page_tool": delete_page_tool,

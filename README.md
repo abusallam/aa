@@ -45,8 +45,8 @@ project/
 - Generate or edit web pages dynamically
 - Modify frontend layouts and backend logic
 - Receive instructions via chatbot or admin UI
-- Leverages OpenAI Function Calling for robust command processing
-- Works with OpenAI or Aider-based models using MCP
+- Leverages Gemini Function Calling for robust command processing
+- Works with Gemini or Aider-based models using MCP
 
 ---
 
@@ -95,7 +95,7 @@ docker compose up --build
 
 ```env
 DATABASE_URL=postgresql://postgres:postgres@db:5432/saas
-OPENAI_API_KEY=sk-...
+GEMINI_API_KEY=...
 JWT_SECRET=your_jwt_secret
 ```
 

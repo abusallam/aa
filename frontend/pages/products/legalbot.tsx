@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { getProduct, getRelatedProducts } from '../../data/products';
 import { useRouter } from 'next/router';
